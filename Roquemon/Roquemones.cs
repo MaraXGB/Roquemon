@@ -11,6 +11,7 @@ namespace Roquemon
         private string mNombre;
         private int mVida, mAtaque, mDefensa, mVelocidad;
         private double mCritico;
+        private bool prueba;
 
         public string Nombre { get => mNombre; set => mNombre = value; }
         public int Vida { get => mVida; set => mVida = value; }
