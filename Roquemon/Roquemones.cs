@@ -19,6 +19,8 @@ namespace Roquemon
         public int Velocidad { get => mVelocidad; set => mVelocidad = value; }
         public double Critico { get => mCritico; set => mCritico = value; }
 
+        
+
         //Constructores
         public Roquemones()
         {
