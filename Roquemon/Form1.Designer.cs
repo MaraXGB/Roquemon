@@ -1,6 +1,6 @@
 ﻿namespace Roquemon
 {
-    partial class Form1
+    partial class Roquemon
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -30,205 +30,446 @@
         {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Jugador1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.BJugador1 = new System.Windows.Forms.Button();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.PlantamonI = new System.Windows.Forms.RadioButton();
+            this.FuegomonI = new System.Windows.Forms.RadioButton();
+            this.AguamonI = new System.Windows.Forms.RadioButton();
+            this.Roquemon1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Habilidad2 = new System.Windows.Forms.RadioButton();
+            this.Habilidad1 = new System.Windows.Forms.RadioButton();
+            this.Jugador2 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.Bjugador2 = new System.Windows.Forms.Button();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.PlantamonD = new System.Windows.Forms.RadioButton();
+            this.FuegomonD = new System.Windows.Forms.RadioButton();
+            this.AguamonD = new System.Windows.Forms.RadioButton();
+            this.Roquemon2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.Habilidad4 = new System.Windows.Forms.RadioButton();
+            this.Habilidad3 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.Combatir = new System.Windows.Forms.Button();
+            this.Jugador1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.Jugador2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBar1.ForeColor = System.Drawing.Color.GreenYellow;
             this.progressBar1.Location = new System.Drawing.Point(94, 30);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(218, 28);
+            this.progressBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.progressBar1.Size = new System.Drawing.Size(253, 22);
             this.progressBar1.TabIndex = 0;
+            this.progressBar1.Value = 100;
             // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(95, 30);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(218, 28);
+            this.progressBar2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.progressBar2.Size = new System.Drawing.Size(218, 22);
             this.progressBar2.TabIndex = 1;
+            this.progressBar2.Value = 100;
+            this.progressBar2.Click += new System.EventHandler(this.progressBar2_Click);
             // 
-            // groupBox1
+            // Jugador1
             // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.progressBar1);
-            this.groupBox1.Location = new System.Drawing.Point(20, 23);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(407, 316);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.Jugador1.Controls.Add(this.groupBox5);
+            this.Jugador1.Controls.Add(this.Roquemon1);
+            this.Jugador1.Controls.Add(this.pictureBox1);
+            this.Jugador1.Controls.Add(this.groupBox3);
+            this.Jugador1.Controls.Add(this.progressBar1);
+            this.Jugador1.Location = new System.Drawing.Point(20, 23);
+            this.Jugador1.Name = "Jugador1";
+            this.Jugador1.Size = new System.Drawing.Size(395, 350);
+            this.Jugador1.TabIndex = 2;
+            this.Jugador1.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox5.Controls.Add(this.BJugador1);
+            this.groupBox5.Controls.Add(this.pictureBox5);
+            this.groupBox5.Controls.Add(this.pictureBox4);
+            this.groupBox5.Controls.Add(this.pictureBox3);
+            this.groupBox5.Controls.Add(this.PlantamonI);
+            this.groupBox5.Controls.Add(this.FuegomonI);
+            this.groupBox5.Controls.Add(this.AguamonI);
+            this.groupBox5.Location = new System.Drawing.Point(6, 30);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(355, 296);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Seleccione un Roquemon";
+            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
+            // 
+            // BJugador1
+            // 
+            this.BJugador1.Location = new System.Drawing.Point(137, 249);
+            this.BJugador1.Name = "BJugador1";
+            this.BJugador1.Size = new System.Drawing.Size(93, 23);
+            this.BJugador1.TabIndex = 6;
+            this.BJugador1.Text = "YO TE ELIJO";
+            this.BJugador1.UseVisualStyleBackColor = true;
+            this.BJugador1.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox5.Image = global::Roquemon.Properties.Resources.PlatamonIzquierda;
+            this.pictureBox5.Location = new System.Drawing.Point(251, 106);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(98, 81);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 5;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox4.Image = global::Roquemon.Properties.Resources.FuegomonIzquierda;
+            this.pictureBox4.Location = new System.Drawing.Point(137, 106);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(93, 81);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox3.Image = global::Roquemon.Properties.Resources.AguamonIzquierda;
+            this.pictureBox3.Location = new System.Drawing.Point(7, 106);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(98, 81);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // PlantamonI
+            // 
+            this.PlantamonI.AutoSize = true;
+            this.PlantamonI.Location = new System.Drawing.Point(257, 77);
+            this.PlantamonI.Name = "PlantamonI";
+            this.PlantamonI.Size = new System.Drawing.Size(75, 17);
+            this.PlantamonI.TabIndex = 2;
+            this.PlantamonI.TabStop = true;
+            this.PlantamonI.Text = "Plantamon";
+            this.PlantamonI.UseVisualStyleBackColor = true;
+            this.PlantamonI.CheckedChanged += new System.EventHandler(this.PlantamonI_CheckedChanged);
+            // 
+            // FuegomonI
+            // 
+            this.FuegomonI.AutoSize = true;
+            this.FuegomonI.Location = new System.Drawing.Point(148, 77);
+            this.FuegomonI.Name = "FuegomonI";
+            this.FuegomonI.Size = new System.Drawing.Size(75, 17);
+            this.FuegomonI.TabIndex = 1;
+            this.FuegomonI.TabStop = true;
+            this.FuegomonI.Text = "Fuegomón";
+            this.FuegomonI.UseVisualStyleBackColor = true;
+            this.FuegomonI.CheckedChanged += new System.EventHandler(this.FuegomonI_CheckedChanged);
+            // 
+            // AguamonI
+            // 
+            this.AguamonI.AutoSize = true;
+            this.AguamonI.Location = new System.Drawing.Point(22, 77);
+            this.AguamonI.Name = "AguamonI";
+            this.AguamonI.Size = new System.Drawing.Size(70, 17);
+            this.AguamonI.TabIndex = 0;
+            this.AguamonI.TabStop = true;
+            this.AguamonI.Text = "Aguamón";
+            this.AguamonI.UseVisualStyleBackColor = true;
+            this.AguamonI.CheckedChanged += new System.EventHandler(this.AguamonI_CheckedChanged);
+            // 
+            // Roquemon1
+            // 
+            this.Roquemon1.AutoSize = true;
+            this.Roquemon1.Location = new System.Drawing.Point(19, 39);
+            this.Roquemon1.Name = "Roquemon1";
+            this.Roquemon1.Size = new System.Drawing.Size(65, 13);
+            this.Roquemon1.TabIndex = 5;
+            this.Roquemon1.Text = "Roquemon1";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(117, 179);
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(118, 193);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(121, 120);
+            this.pictureBox1.Size = new System.Drawing.Size(135, 133);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.Habilidad2);
+            this.groupBox3.Controls.Add(this.Habilidad1);
             this.groupBox3.Location = new System.Drawing.Point(13, 70);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(298, 60);
+            this.groupBox3.Size = new System.Drawing.Size(334, 117);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Habilidades";
             // 
-            // radioButton2
+            // Habilidad2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(187, 24);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.Habilidad2.AutoSize = true;
+            this.Habilidad2.Location = new System.Drawing.Point(187, 24);
+            this.Habilidad2.Name = "Habilidad2";
+            this.Habilidad2.Size = new System.Drawing.Size(14, 13);
+            this.Habilidad2.TabIndex = 2;
+            this.Habilidad2.TabStop = true;
+            this.Habilidad2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.Habilidad2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // Habilidad1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.Habilidad1.AutoSize = true;
+            this.Habilidad1.Location = new System.Drawing.Point(9, 24);
+            this.Habilidad1.Name = "Habilidad1";
+            this.Habilidad1.Size = new System.Drawing.Size(14, 13);
+            this.Habilidad1.TabIndex = 1;
+            this.Habilidad1.TabStop = true;
+            this.Habilidad1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.Habilidad1.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // Jugador2
             // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.pictureBox2);
-            this.groupBox2.Controls.Add(this.groupBox4);
-            this.groupBox2.Controls.Add(this.progressBar2);
-            this.groupBox2.Location = new System.Drawing.Point(421, 23);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 316);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.Jugador2.Controls.Add(this.groupBox6);
+            this.Jugador2.Controls.Add(this.Roquemon2);
+            this.Jugador2.Controls.Add(this.pictureBox2);
+            this.Jugador2.Controls.Add(this.groupBox4);
+            this.Jugador2.Controls.Add(this.progressBar2);
+            this.Jugador2.Location = new System.Drawing.Point(409, 23);
+            this.Jugador2.Name = "Jugador2";
+            this.Jugador2.Size = new System.Drawing.Size(394, 350);
+            this.Jugador2.TabIndex = 3;
+            this.Jugador2.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox6.Controls.Add(this.Bjugador2);
+            this.groupBox6.Controls.Add(this.pictureBox6);
+            this.groupBox6.Controls.Add(this.pictureBox7);
+            this.groupBox6.Controls.Add(this.pictureBox8);
+            this.groupBox6.Controls.Add(this.PlantamonD);
+            this.groupBox6.Controls.Add(this.FuegomonD);
+            this.groupBox6.Controls.Add(this.AguamonD);
+            this.groupBox6.Location = new System.Drawing.Point(15, 30);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(361, 296);
+            this.groupBox6.TabIndex = 7;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Seleccione un Roquemon";
+            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // Bjugador2
+            // 
+            this.Bjugador2.Location = new System.Drawing.Point(137, 249);
+            this.Bjugador2.Name = "Bjugador2";
+            this.Bjugador2.Size = new System.Drawing.Size(93, 23);
+            this.Bjugador2.TabIndex = 6;
+            this.Bjugador2.Text = "YO TE ELIJO";
+            this.Bjugador2.UseVisualStyleBackColor = true;
+            this.Bjugador2.Click += new System.EventHandler(this.Bjugador2_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox6.Image = global::Roquemon.Properties.Resources.PlantamonDerecha;
+            this.pictureBox6.Location = new System.Drawing.Point(251, 106);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(98, 81);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 5;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox7.Image = global::Roquemon.Properties.Resources.FuegomonDerecha1;
+            this.pictureBox7.Location = new System.Drawing.Point(137, 106);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(93, 81);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 4;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox8.Image = global::Roquemon.Properties.Resources.AguamonDerecha;
+            this.pictureBox8.Location = new System.Drawing.Point(7, 106);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(98, 81);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 3;
+            this.pictureBox8.TabStop = false;
+            // 
+            // PlantamonD
+            // 
+            this.PlantamonD.AutoSize = true;
+            this.PlantamonD.Location = new System.Drawing.Point(257, 77);
+            this.PlantamonD.Name = "PlantamonD";
+            this.PlantamonD.Size = new System.Drawing.Size(75, 17);
+            this.PlantamonD.TabIndex = 2;
+            this.PlantamonD.TabStop = true;
+            this.PlantamonD.Text = "Plantamon";
+            this.PlantamonD.UseVisualStyleBackColor = true;
+            this.PlantamonD.CheckedChanged += new System.EventHandler(this.PlantamonD_CheckedChanged);
+            // 
+            // FuegomonD
+            // 
+            this.FuegomonD.AutoSize = true;
+            this.FuegomonD.Location = new System.Drawing.Point(148, 77);
+            this.FuegomonD.Name = "FuegomonD";
+            this.FuegomonD.Size = new System.Drawing.Size(75, 17);
+            this.FuegomonD.TabIndex = 1;
+            this.FuegomonD.TabStop = true;
+            this.FuegomonD.Text = "Fuegomón";
+            this.FuegomonD.UseVisualStyleBackColor = true;
+            this.FuegomonD.CheckedChanged += new System.EventHandler(this.FuegomonD_CheckedChanged);
+            // 
+            // AguamonD
+            // 
+            this.AguamonD.AutoSize = true;
+            this.AguamonD.Location = new System.Drawing.Point(22, 77);
+            this.AguamonD.Name = "AguamonD";
+            this.AguamonD.Size = new System.Drawing.Size(70, 17);
+            this.AguamonD.TabIndex = 0;
+            this.AguamonD.TabStop = true;
+            this.AguamonD.Text = "Aguamón";
+            this.AguamonD.UseVisualStyleBackColor = true;
+            this.AguamonD.CheckedChanged += new System.EventHandler(this.AguamonD_CheckedChanged);
+            // 
+            // Roquemon2
+            // 
+            this.Roquemon2.AutoSize = true;
+            this.Roquemon2.Location = new System.Drawing.Point(18, 39);
+            this.Roquemon2.Name = "Roquemon2";
+            this.Roquemon2.Size = new System.Drawing.Size(35, 13);
+            this.Roquemon2.TabIndex = 6;
+            this.Roquemon2.Text = "label3";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(125, 179);
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.Location = new System.Drawing.Point(139, 193);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(122, 119);
+            this.pictureBox2.Size = new System.Drawing.Size(134, 133);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton4);
-            this.groupBox4.Controls.Add(this.radioButton3);
+            this.groupBox4.Controls.Add(this.Habilidad4);
+            this.groupBox4.Controls.Add(this.Habilidad3);
             this.groupBox4.Location = new System.Drawing.Point(15, 70);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(298, 52);
+            this.groupBox4.Size = new System.Drawing.Size(298, 117);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Habilidades";
             // 
-            // radioButton4
+            // Habilidad4
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(195, 24);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.Habilidad4.AutoSize = true;
+            this.Habilidad4.Location = new System.Drawing.Point(195, 24);
+            this.Habilidad4.Name = "Habilidad4";
+            this.Habilidad4.Size = new System.Drawing.Size(14, 13);
+            this.Habilidad4.TabIndex = 3;
+            this.Habilidad4.TabStop = true;
+            this.Habilidad4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.Habilidad4.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // Habilidad3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 24);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.Habilidad3.AutoSize = true;
+            this.Habilidad3.Location = new System.Drawing.Point(6, 24);
+            this.Habilidad3.Name = "Habilidad3";
+            this.Habilidad3.Size = new System.Drawing.Size(14, 13);
+            this.Habilidad3.TabIndex = 2;
+            this.Habilidad3.TabStop = true;
+            this.Habilidad3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.Habilidad3.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(287, 414);
+            this.label1.Location = new System.Drawing.Point(288, 437);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "label1";
             // 
-            // button1
+            // Combatir
             // 
-            this.button1.Location = new System.Drawing.Point(375, 353);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "COMBATIR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Combatir.Location = new System.Drawing.Point(374, 379);
+            this.Combatir.Name = "Combatir";
+            this.Combatir.Size = new System.Drawing.Size(75, 23);
+            this.Combatir.TabIndex = 5;
+            this.Combatir.Text = "COMBATIR";
+            this.Combatir.UseVisualStyleBackColor = true;
+            this.Combatir.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
-            // 
-            // Form1
+            // Roquemon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 485);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Combatir);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Controls.Add(this.Jugador2);
+            this.Controls.Add(this.Jugador1);
+            this.Name = "Roquemon";
             this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Load += new System.EventHandler(this.Roquemon_Load);
+            this.Jugador1.ResumeLayout(false);
+            this.Jugador1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Jugador2.ResumeLayout(false);
+            this.Jugador2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -241,20 +482,36 @@
 
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Jugador1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton Habilidad2;
+        private System.Windows.Forms.RadioButton Habilidad1;
+        private System.Windows.Forms.GroupBox Jugador2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton Habilidad4;
+        private System.Windows.Forms.RadioButton Habilidad3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Combatir;
+        private System.Windows.Forms.Label Roquemon1;
+        private System.Windows.Forms.Label Roquemon2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.RadioButton PlantamonI;
+        private System.Windows.Forms.RadioButton FuegomonI;
+        private System.Windows.Forms.RadioButton AguamonI;
+        private System.Windows.Forms.Button BJugador1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button Bjugador2;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.RadioButton PlantamonD;
+        private System.Windows.Forms.RadioButton FuegomonD;
+        private System.Windows.Forms.RadioButton AguamonD;
     }
 }
 
