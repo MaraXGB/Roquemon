@@ -95,7 +95,6 @@
             this.progressBar2.Size = new System.Drawing.Size(218, 22);
             this.progressBar2.TabIndex = 1;
             this.progressBar2.Value = 100;
-            this.progressBar2.Click += new System.EventHandler(this.progressBar2_Click);
             // 
             // Jugador1
             // 
@@ -120,13 +119,13 @@
             this.groupBox5.Controls.Add(this.PlantamonI);
             this.groupBox5.Controls.Add(this.FuegomonI);
             this.groupBox5.Controls.Add(this.AguamonI);
-            this.groupBox5.Location = new System.Drawing.Point(6, 30);
+            this.groupBox5.Location = new System.Drawing.Point(13, 30);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(355, 296);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Seleccione un Roquemon";
-            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
+
             // 
             // BJugador1
             // 
@@ -148,7 +147,6 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // pictureBox4
             // 
@@ -259,6 +257,7 @@
             this.Habilidad1.TabStop = true;
             this.Habilidad1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.Habilidad1.UseVisualStyleBackColor = true;
+            this.Habilidad1.CheckedChanged += new System.EventHandler(this.Habilidad1_CheckedChanged);
             // 
             // Jugador2
             // 
@@ -289,7 +288,6 @@
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Seleccione un Roquemon";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // Bjugador2
             // 
@@ -452,7 +450,6 @@
             this.Controls.Add(this.Jugador1);
             this.Name = "Roquemon";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Roquemon_Load);
             this.Jugador1.ResumeLayout(false);
             this.Jugador1.PerformLayout();
             this.groupBox5.ResumeLayout(false);

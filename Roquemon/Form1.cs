@@ -40,10 +40,7 @@ namespace Roquemon
             using (StreamReader aTexto = new StreamReader(Ruta, Encoding.Default))
             {
                 Linea = aTexto.ReadToEnd();
-                
-                    rCaracteristicas = Linea.Split(delimiterChars);
-
-                
+                rCaracteristicas = Linea.Split(delimiterChars);   
                 aTexto.Close();
             }
             //------------------------------------------------------------------------------------------
@@ -91,77 +88,116 @@ namespace Roquemon
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int Velocidad1 = 0;
+            int Ataque1 = 0;
+            int Defensa1 = 0;
+            double Critico1 = 0;
+            int Turno1=0;
+            int Turno2 = 0;
 
+            if (Turno1 > 3)
+            {
+
+            }
+            if (Habilidad1.Checked == true)
+            {
+
+                if (Habilidad1.Text == "Ataque Rápido")
+                {
+                    Velocidad1 = 100;
+                }
+                else if (Habilidad1.Text == "Flama")
+                {
+                    Ataque1 = Fuegomon.Ataque + 5;
+                }
+                else if (Habilidad1.Text == "Latigo")
+                {
+                    Ataque1 = Plantamon.Ataque + 5;
+                }
+
+            }
+            else if (Habilidad2.Checked == true)
+            {
+                if (Habilidad2.Text == "Torrente")
+                {
+                    Ataque1 = Aguamon.Ataque + 5;
+                }
+                else if (Habilidad2.Text == "Furia")
+                {
+                    Critico1 = Fuegomon.Critico + 0.2;
+                    Turno1 = 3;
+                }
+                else if (Habilidad2.Text == "Fotosintesis")
+                {
+                    Defensa1 = Plantamon.Defensa + 5;
+                    Turno2 = 3;
+                }
+            }
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(Habilitador == 2)
+            Habilitador++;
+            if (Habilitador == 2)
+            {
+                Combatir.Visible = true;
+                Combatir.Enabled = false;
+                Habilitador = 0;
+            } 
+        
            if (AguamonI.Checked == true)
            {
                 Roquemon1.Text = "Aguamón";
                 Habilidad1.Image = Image.FromFile("AtaqueRapido.ico");
                 Habilidad1.Text = "Ataque Rápido";
+                    Habilidad1.Checked = false;
                 Habilidad2.Image = Image.FromFile("Torrente.ico");
                 Habilidad2.Text = "Torrente";
                 groupBox5.Visible = false;
                 pictureBox1.Image = Image.FromFile("AguamonIzquierda.png");
                 progressBar1.Maximum = Aguamon.Vida;
-                progressBar1.Value = Aguamon.v;
+                progressBar1.Value = Aguamon.Vida;
             }
             else if (FuegomonI.Checked == true)
             {
                 Roquemon1.Text = "Fuegomón";
                 Habilidad1.Image = Image.FromFile("Flama.ico");
                 Habilidad1.Text = "Flama";
+                Habilidad1.Checked = false;
                 Habilidad2.Image = Image.FromFile("Furia.ico");
                 Habilidad2.Text = "Furia";
                 groupBox5.Visible = false;
                 pictureBox1.Image = Image.FromFile("FuegomonIzquierda.png");
-                progressBar1.Maximum = 50;
-                progressBar1.Value = 50;
+                progressBar1.Maximum = Fuegomon.Vida;
+                progressBar1.Value = Fuegomon.Vida;
             }
            else if (PlantamonI.Checked == true)
             {
                 Roquemon1.Text = "Plantamón";
                 Habilidad1.Image = Image.FromFile("Latigo.ico");
                 Habilidad1.Text = "Latigo";
+                Habilidad1.Checked = false;
                 Habilidad2.Image = Image.FromFile("Fotosintesis.ico");
                 Habilidad2.Text = "Fotosintesis";
                 groupBox5.Visible = false;
                 pictureBox1.Image = Image.FromFile("PlantamonIzquierda.png");
-                progressBar1.Maximum = 70;
-                progressBar1.Value = 70;
+                progressBar1.Maximum = Plantamon.Vida;
+                progressBar1.Value = Plantamon.Vida;
             }
         }
 
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Roquemon_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void progressBar2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Bjugador2_Click(object sender, EventArgs e)
         {
+            Habilitador++;
+            if (Habilitador == 2)
+            {
+                Combatir.Visible = true;
+                Combatir.Enabled = false;
+                Habilitador = 0;
+            }
+            
             if (AguamonD.Checked == true)
             {
                 Roquemon2.Text = "Aguamón";
@@ -171,8 +207,8 @@ namespace Roquemon
                 Habilidad4.Text = "Torrente";
                 groupBox6.Visible = false;
                 pictureBox2.Image = Image.FromFile("AguamonDerecha.png");
-                progressBar2.Maximum = 60;
-                progressBar2.Value = 60;
+                progressBar2.Maximum = Aguamon.Vida;
+                progressBar2.Value = Aguamon.Vida;
             }
             else if (FuegomonD.Checked == true)
             {
@@ -183,8 +219,8 @@ namespace Roquemon
                 Habilidad4.Text = "Furia";
                 groupBox6.Visible = false;
                 pictureBox2.Image = Image.FromFile("FuegomonDerecha.jpg");
-                progressBar2.Maximum = 50;
-                progressBar2.Value = 50;
+                progressBar2.Maximum = Fuegomon.Vida;
+                progressBar2.Value = Fuegomon.Vida;
             }
             else if (PlantamonD.Checked == true)
             {
@@ -195,8 +231,8 @@ namespace Roquemon
                 Habilidad4.Text = "Fotosintesis";
                 groupBox6.Visible = false;
                 pictureBox2.Image = Image.FromFile("PlantamonDerecha.png");
-                progressBar2.Maximum = 70;
-                progressBar2.Value = 70;
+                progressBar2.Maximum = Plantamon.Vida;
+                progressBar2.Value = Plantamon.Vida;
             }
         }
 
@@ -228,6 +264,12 @@ namespace Roquemon
         private void PlantamonD_CheckedChanged(object sender, EventArgs e)
         {
             if (PlantamonD.Checked == true) Bjugador2.Enabled = true;
+        }
+
+        private void Habilidad1_CheckedChanged(object sender, EventArgs e)
+        {
+            int prueba = 0;
+            prueba++;
         }
     }
 
