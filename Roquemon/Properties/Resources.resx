@@ -121,6 +121,9 @@
   <data name="FuegomonIzquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\FuegomonIzquierda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FuegomonDerecha1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\FuegomonDerecha.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FuegomonDerecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\FuegomonDerecha.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,7 +142,7 @@
   <data name="PlatamonIzquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\PlatamonIzquierda.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FuegomonDerecha1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\FuegomonDerecha.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Fondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Fondo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
