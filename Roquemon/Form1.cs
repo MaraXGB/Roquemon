@@ -109,7 +109,6 @@ namespace Roquemon
 
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             //Carga los valores base de las caracteristicas de los Roquemones seleccionados
@@ -312,8 +311,7 @@ namespace Roquemon
                 if (Habilidad1.Checked == true) Habilidad = Habilidad1.Text;
                 else if (Habilidad2.Checked == true) Habilidad = Habilidad2.Text;
                 label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + "de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad;
             }
             else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
             {
@@ -322,8 +320,7 @@ namespace Roquemon
                 if (Habilidad3.Checked == true) Habilidad = Habilidad3.Text;
                 else if (Habilidad4.Checked == true) Habilidad = Habilidad4.Text;
                 label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad;
             }//En el casi que el que recibe el daño se le acabe la vida luego de ser atacado, establece al ganador
             // coloca el progressbar del perdedor en 0 y envia el mensaje descriptivo
             else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar2.Value <= Convert.ToInt32(Daño1))
@@ -333,8 +330,7 @@ namespace Roquemon
                 if (Habilidad1.Checked == true) Habilidad = Habilidad1.Text;
                 if (Habilidad2.Checked == true) Habilidad = Habilidad2.Text;
                 label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad;
                 Ganador = Jugador1.Text + " con " + Roquemon1.Text;
             }
             else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar1.Value <= Convert.ToInt32(Daño2))
@@ -344,8 +340,7 @@ namespace Roquemon
                 if (Habilidad3.Checked == true) Habilidad = Habilidad3.Text;
                 if (Habilidad4.Checked == true) Habilidad = Habilidad4.Text;
                 label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad;
                 Ganador = Jugador2.Text + " con " + Roquemon2.Text;
 
             }
@@ -360,12 +355,10 @@ namespace Roquemon
                 label3.Text = Convert.ToString(progressBar2.Value);
                 if (Habilidad1.Checked == true)
                     label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + "de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad1.Text;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad1.Text;
                 else if (Habilidad2.Checked == true)
                     label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad2.Text;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad2.Text;
             }
             else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
             {
@@ -373,12 +366,10 @@ namespace Roquemon
                 label2.Text = Convert.ToString(progressBar1.Value);
                 if (Habilidad3.Checked == true)
                     label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad3.Text;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad3.Text;
                 else if (Habilidad4.Checked == true)
                     label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad4.Text;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad4.Text;
             }//En el casi que el que recibe el daño se le acabe la vida luego de ser atacado, establece al ganador
             // coloca el progressbar del perdedor en 0 y envia el mensaje descriptivo
             else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar2.Value <= Convert.ToInt32(Daño1))
@@ -387,12 +378,10 @@ namespace Roquemon
                 label3.Text = "0";
                 if (Habilidad1.Checked == true)
                     label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad1.Text;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad1.Text;
                 if (Habilidad2.Checked == true)
                     label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad2.Text;
+                                   Convert.ToString(Daño1) + "\n usando la habilidad: " + Habilidad2.Text;
                 Ganador = Jugador1.Text + " con " + Roquemon1.Text;
 
             }
@@ -402,15 +391,43 @@ namespace Roquemon
                 label2.Text = "0";
                 if (Habilidad3.Checked == true)
                     label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad3.Text;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad3.Text;
                 if (Habilidad4.Checked == true)
                     label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad4.Text;
+                                   Convert.ToString(Daño2) + "\n usando la habilidad: " + Habilidad4.Text;
                 Ganador = Jugador2.Text + " con " + Roquemon2.Text;
 
             }
+        }
+
+        private void SeleccionarGanador()
+        {
+            Thread.Sleep(1500);
+            DialogResult Reiniciar;
+
+            Reiniciar = MessageBox.Show("HAS GANADO \n" + Ganador + "\n ¿Quieren Jugar de nuevo?", "GANADOR", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if (Reiniciar == System.Windows.Forms.DialogResult.Yes)
+            {
+                groupBox5.Visible = true;
+                groupBox6.Visible = true;
+                Combatir.Visible = false;
+                label1.Text = "";
+                AguamonD.Checked = false;
+                FuegomonD.Checked = false;
+                PlantamonD.Checked = false;
+                AguamonI.Checked = false;
+                FuegomonI.Checked = false;
+                PlantamonI.Checked = false;
+                inicializacion();
+                Ganador = "";
+                string Jugador1 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 1", "");
+                if (Jugador1 == "") this.Jugador1.Text = "Jugador1";
+                else this.Jugador1.Text = Jugador1;
+                string Jugador2 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 2", "");
+                if (Jugador2 == "") this.Jugador2.Text = "Jugador2";
+                else this.Jugador2.Text = Jugador2;
+            }
+            else Close();
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -426,39 +443,30 @@ namespace Roquemon
             if (AguamonI.Checked == true)
             {
                 Roquemon1.Text = Aguamon.Nombre;
-                Habilidad1.Image = Image.FromFile("AtaqueRapido.ico");
                 Habilidad1.Text = "Ataque Rápido";
                 Habilidad1.Checked = false;
-                Habilidad2.Image = Image.FromFile("Torrente.ico");
                 Habilidad2.Text = "Torrente";
                 groupBox5.Visible = false;
-                pictureBox1.Image = Image.FromFile("AguamonIzquierda.png");
                 progressBar1.Maximum = Aguamon.Vida;
                 progressBar1.Value = Aguamon.Vida;
             }
             else if (FuegomonI.Checked == true)
             {
                 Roquemon1.Text = Fuegomon.Nombre;
-                Habilidad1.Image = Image.FromFile("Flama.ico");
                 Habilidad1.Text = "Flama";
                 Habilidad1.Checked = false;
-                Habilidad2.Image = Image.FromFile("Furia.ico");
                 Habilidad2.Text = "Furia";
                 groupBox5.Visible = false;
-                pictureBox1.Image = Image.FromFile("FuegomonIzquierda.png");
                 progressBar1.Maximum = Fuegomon.Vida;
                 progressBar1.Value = Fuegomon.Vida;
             }
             else if (PlantamonI.Checked == true)
             {
                 Roquemon1.Text = Plantamon.Nombre;
-                Habilidad1.Image = Image.FromFile("Latigo.ico");
                 Habilidad1.Text = "Latigo";
                 Habilidad1.Checked = false;
-                Habilidad2.Image = Image.FromFile("Fotosintesis.ico");
                 Habilidad2.Text = "Fotosintesis";
                 groupBox5.Visible = false;
-                pictureBox1.Image = Image.FromFile("PlantamonIzquierda.png");
                 progressBar1.Maximum = Plantamon.Vida;
                 progressBar1.Value = Plantamon.Vida;
             }
@@ -481,36 +489,27 @@ namespace Roquemon
             if (AguamonD.Checked == true)
             {
                 Roquemon2.Text = "Aguamón";
-                Habilidad3.Image = Image.FromFile("AtaqueRapido.ico");
                 Habilidad3.Text = "Ataque Rápido";
-                Habilidad4.Image = Image.FromFile("Torrente.ico");
                 Habilidad4.Text = "Torrente";
                 groupBox6.Visible = false;
-                pictureBox2.Image = Image.FromFile("AguamonDerecha.png");
                 progressBar2.Maximum = Aguamon.Vida;
                 progressBar2.Value = Aguamon.Vida;
             }
             else if (FuegomonD.Checked == true)
             {
                 Roquemon2.Text = "Fuegomón";
-                Habilidad3.Image = Image.FromFile("Flama.ico");
                 Habilidad3.Text = "Flama";
-                Habilidad4.Image = Image.FromFile("Furia.ico");
                 Habilidad4.Text = "Furia";
                 groupBox6.Visible = false;
-                pictureBox2.Image = Image.FromFile("FuegomonDerecha.jpg");
                 progressBar2.Maximum = Fuegomon.Vida;
                 progressBar2.Value = Fuegomon.Vida;
             }
             else if (PlantamonD.Checked == true)
             {
                 Roquemon2.Text = "Plantamón";
-                Habilidad3.Image = Image.FromFile("Latigo.ico");
                 Habilidad3.Text = "Latigo";
-                Habilidad4.Image = Image.FromFile("Fotosintesis.ico");
                 Habilidad4.Text = "Fotosintesis";
                 groupBox6.Visible = false;
-                pictureBox2.Image = Image.FromFile("PlantamonDerecha.png");
                 progressBar2.Maximum = Plantamon.Vida;
                 progressBar2.Value = Plantamon.Vida;
             }
@@ -578,39 +577,6 @@ namespace Roquemon
             {
                 SeleccionarGanador();
             }
-        }
-        private void SeleccionarGanador()
-        {
-            Thread.Sleep(1500);
-            DialogResult Reiniciar;
-
-            Reiniciar = MessageBox.Show("HAS GANADO \n" + Ganador + "\n ¿Quieren Jugar de nuevo?", "GANADOR", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-            if (Reiniciar == System.Windows.Forms.DialogResult.Yes)
-            {
-                groupBox5.Visible = true;
-                groupBox6.Visible = true;
-                Combatir.Visible = false;
-                label1.Text = "";
-                AguamonD.Checked = false;
-                FuegomonD.Checked = false;
-                PlantamonD.Checked = false;
-                AguamonI.Checked = false;
-                FuegomonI.Checked = false;
-                PlantamonI.Checked = false;
-                inicializacion();
-                Ganador = "";
-                string Jugador1 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 1", "");
-                if (Jugador1 == "") this.Jugador1.Text = "Jugador1";
-                else this.Jugador1.Text = Jugador1;
-                string Jugador2 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 2", "");
-                if (Jugador2 == "") this.Jugador2.Text = "Jugador2";
-                else this.Jugador2.Text = Jugador2;
-            }
-            else Close();
-        }
-        private void progressBar2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Habilidad3_CheckedChanged(object sender, EventArgs e)
