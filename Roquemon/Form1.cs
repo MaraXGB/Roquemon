@@ -1,60 +1,84 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections;
+using System.Threading;
 
 namespace Roquemon
 {
     public partial class Roquemon : Form
     {
+        //-----------------------Variables----------------------------------
+        //Varible utilizada para habilitar el boton Combatir, luego de ser elegidos los roquemones
         int Habilitador = 0;
+        //para los casos donde la habilidad dura por 3 turnos.
         int Turno1 = 0, Turno2 = 0;
         int Turno3 = 0, Turno4 = 0;
+        //Caracteristicas del Roquemon elegido por el Jugador 1
         double Vida1 = 0;
         int Velocidad1 = 0;
         int Ataque1 = 0;
         int Defensa1 = 0;
         double Critico1 = 0;
+        //Caracteristicas del Roquemon elegido por el Jugador 1
         double Vida2 = 0;
         int Velocidad2 = 0;
         int Ataque2 = 0;
         int Defensa2 = 0;
         double Critico2 = 0;
+        //Calculos correspondiente a quien atacara primero y el daño que causaran los Roquemones
         int VelocidadEfectiva1 = 0;
         int VelocidadEfectiva2 = 0;
         double Daño1 = 0;
         double Daño2 = 0;
-
+        // Variable que establece el nombre del Jugador Ganador y el de su Roquemon.
+        string Ganador = "";
+        //Variable utilizada para establecer de forma aleatoria el que atacara primero cuando las velocidades efectivas son iguales.
+        int PrimeroAtacando;
+        //Declaraciones de cada roquemon en la clase Roquemones
         Roquemones Aguamon = new Roquemones();
         Roquemones Fuegomon = new Roquemones();
         Roquemones Plantamon = new Roquemones();
+
+        private void inicializacion()
+        {
+            Jugador1.Text = "";
+            Jugador2.Text = "";
+            label1.Text = "";
+            Roquemon1.Text = "";
+            Roquemon2.Text = "";
+            Habilidad1.Checked = false;
+            Habilidad2.Checked = false;
+            Habilidad3.Checked = false;
+            Habilidad4.Checked = false;
+            Combatir.Visible = false;
+            BJugador1.Enabled = false;
+            Bjugador2.Enabled = false;
+        }
+
         public Roquemon()
         {
             InitializeComponent();
             inicializacion();
-            
+
             //Ingreso del nombre de los jugadores
             string Jugador1 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 1", "");
-            this.Jugador1.Text = Jugador1;
+            if (Jugador1 == "") this.Jugador1.Text = "Jugador1";
+            else this.Jugador1.Text = Jugador1;
             string Jugador2 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 2", "");
-            this.Jugador2.Text = Jugador2;
+            if (Jugador2 == "") this.Jugador2.Text = "Jugador2";
+            else this.Jugador2.Text = Jugador2;
 
             //--------------------------Lectura del archivo de Texto-----------------------------------
             string Linea = "";
-            string[] rCaracteristicas= {};
-            char[] CharDelimitadores = {',', '%', '\r','\n'};
+            string[] rCaracteristicas = { };
+            char[] CharDelimitadores = { ',', '%', '\r', '\n' };
 
             using (StreamReader aTexto = new StreamReader("Roquemon.txt", Encoding.Default))
             {
                 Linea = aTexto.ReadToEnd();
-                rCaracteristicas = Linea.Split(CharDelimitadores);   
+                rCaracteristicas = Linea.Split(CharDelimitadores);
                 aTexto.Close();
             }
             //------------------------------------------------------------------------------------------
@@ -84,64 +108,42 @@ namespace Roquemon
             Plantamon.Critico = Convert.ToDouble(rCaracteristicas[21]) / 100;
 
         }
-        private void inicializacion()
-        {
-            Jugador1.Text = "";
-            Jugador2.Text = "";
-            label1.Text = "";
-            Roquemon1.Text = "";
-            Roquemon2.Text = "";
-            Habilidad1.Checked = false;
-            Habilidad2.Checked = false;
-            Habilidad3.Checked = false;
-            Habilidad4.Checked = false;
-            Combatir.Visible = false;
-            BJugador1.Enabled = false;
-            Bjugador2.Enabled = false;
-        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Carga los valores base de las caracteristicas de los Roquemones seleccionados
             CaracteristicasBase(Roquemon1.Text, true);
             CaracteristicasBase(Roquemon2.Text, false);
-
-            Habilidades(Habilidad1.Checked, Habilidad2.Checked, Habilidad1.Text, 
+            //Establece las Habilidades seleccionadas por el jugador en su respectivo roquemon
+            Habilidades(Habilidad1.Checked, Habilidad2.Checked, Habilidad1.Text,
                         Habilidad2.Text, true);
-            Habilidades(Habilidad3.Checked, Habilidad4.Checked, Habilidad3.Text, 
+            Habilidades(Habilidad3.Checked, Habilidad4.Checked, Habilidad3.Text,
                         Habilidad4.Text, false);
+            //Calculo de Velocidad Efectiva y Daño
             Resultados();
+            //Validación para el caso que la velocidad efectiva de ambos jugadores sea la misma
+            if (VelocidadEfectiva1 == VelocidadEfectiva2)
+            {
+                Random Rnd = new Random();
+                PrimeroAtacando = Rnd.Next(0, 1);
+                if (PrimeroAtacando == 0) VelocidadEfectiva1 = VelocidadEfectiva1 + 1;
+                else VelocidadEfectiva2 = VelocidadEfectiva2 + 1;
+            }
 
-            if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar2.Value > Convert.ToInt32(Daño1))
+            PrimeroAtacar();
+
+            //Envia un mensaje con el nombre del jugador ganador con el roquemon elegido, e inicializa los controles si desean jugar nuevamente
+            if (progressBar1.Value == 0 || progressBar2.Value == 0)
             {
-                progressBar2.Value = progressBar2.Value - Convert.ToInt32(Daño1);
-                label3.Text = Convert.ToString(progressBar2.Value);
-                if (Habilidad1.Checked== true)
-                label1.Text = "El " + Roquemon1.Text + "de " + Jugador1.Text + "ha causado un daño de: " + 
-                               Convert.ToString(Daño1) + " al " + Roquemon2.Text + "de " + Jugador2.Text + 
-                               "usando la habilidad: " + Habilidad1.Text;
-                else if (Habilidad2.Checked == true)
-                    label1.Text = "El " + Roquemon1.Text + "de " + Jugador1.Text + "ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + " al " + Roquemon2.Text + "de " + Jugador2.Text +
-                                   "usando la habilidad: " + Habilidad2.Text;
+                SeleccionarGanador();
             }
-            else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
-            {
-                progressBar1.Value = progressBar1.Value - Convert.ToInt32(Daño2);
-                label3.Text = Convert.ToString(progressBar1.Value);
-                if (Habilidad3.Checked == true)
-                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + " al " + Roquemon1.Text + " de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad3.Text;
-                else if (Habilidad4.Checked == true)
-                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + " al " + Roquemon1.Text + "de " + Jugador1.Text +
-                                   " usando la habilidad: " + Habilidad4.Text;
-            }
-            timer1.Start();
+            else timer1.Start();  // se utiliza un timer para que se vean ambos ataques con sus respectivos ataques descriptivos
 
         }
         private void CaracteristicasBase(string NombreRoquemon, bool Jugador)
         {
+            //Jugador 1 representa el bool "true" y el Jugador 2 representa el bool "false"
             if (Jugador == true)
             {
                 if (NombreRoquemon == "Aguamón")
@@ -197,11 +199,13 @@ namespace Roquemon
                 }
             }
         }
-        private void Habilidades(bool Habilidad1, bool Habilidad2, string NombreHabilidad1, 
+        private void Habilidades(bool Habilidad1, bool Habilidad2, string NombreHabilidad1,
                                  string NombreHabilidad2, bool Jugador)
         {
+            //Jugador 1 representa el bool "true" y el Jugador 2 representa el bool "false"
             if (Jugador == true)
             {
+                //Mantiene la habilidad Furia y Fotosintesis por 3 turnos en el caso de ser seleccionada
                 if (Turno1 > 0)
                 {
                     Critico1 = Fuegomon.Critico + 0.2;
@@ -228,43 +232,44 @@ namespace Roquemon
                     Turno4--;
                 }
             }
+            //El radiobutton Habilidad1 puede tener 3 habilidades de los roquemones Ataque Rápido, Flama y Latigo
             if (Habilidad1 == true)
             {
 
                 if (NombreHabilidad1 == "Ataque Rápido")
                 {
-                    if (Jugador  == true) Velocidad1 = Aguamon.Velocidad + 65;
-                    else if (Jugador == false) Velocidad2 = Aguamon.Velocidad + 65;
+                    if (Jugador == true) Velocidad1 = Aguamon.Velocidad + 65; //Jugador1 : Aguamon: Establece velocidad en 100
+                    else if (Jugador == false) Velocidad2 = Aguamon.Velocidad + 65; //Jugador2 : Aguamon: Establece velocidad en 100
                 }
                 else if (NombreHabilidad1 == "Flama")
                 {
-                    if (Jugador == true) Ataque1 = Fuegomon.Ataque + 5;
-                    else if (Jugador == false) Ataque2 = Fuegomon.Ataque + 5;
+                    if (Jugador == true) Ataque1 = Fuegomon.Ataque + 5; // Jugador1 : Fuegomon: incrementa un bono de 5 en Ataque
+                    else if (Jugador == false) Ataque2 = Fuegomon.Ataque + 5; //Jugador2 : Fuegomon: incrementa un bono de 5 en Ataque
                 }
                 else if (NombreHabilidad1 == "Latigo")
                 {
-                    if (Jugador == true)  Ataque1 = Plantamon.Ataque + 5;
-                    else if (Jugador == false) Ataque2 = Plantamon.Ataque + 5;
+                    if (Jugador == true) Ataque1 = Plantamon.Ataque + 5; // Jugador1 : Plantamon:incrementa un bono de 5 en Ataque
+                    else if (Jugador == false) Ataque2 = Plantamon.Ataque + 5; //Jugador2 : Plantamon: incrementa un bono de 5 en Ataque
                 }
 
-            }
+            } //El radiobutton Habilidad2 puede tener 3 habilidades de los roquemones Torrente, Furia, Fotosintesis
             else if (Habilidad2 == true)
             {
                 if (NombreHabilidad2 == "Torrente")
                 {
-                    if (Jugador == true) Ataque1 = Aguamon.Ataque + 5;
-                    else if (Jugador == false) Ataque1 = Aguamon.Ataque + 5;
+                    if (Jugador == true) Ataque1 = Aguamon.Ataque + 5; // Jugador1 : Aguamon:incrementa un bono de 5 en Ataque
+                    else if (Jugador == false) Ataque1 = Aguamon.Ataque + 5; // Jugador2 : Aguamon:incrementa un bono de 5 en Ataque
                 }
                 else if (NombreHabilidad2 == "Furia")
                 {
                     if (Jugador == true)
                     {
-                        Critico1 = Fuegomon.Critico + 0.2;
+                        Critico1 = Fuegomon.Critico + 0.2; // Jugador1 : Fuegomon: incrementa un 20% en el critico por 3 turnos
                         Turno1 = 3;
                     }
                     else if (Jugador == false)
                     {
-                        Critico2 = Fuegomon.Critico + 0.2;
+                        Critico2 = Fuegomon.Critico + 0.2; // Jugador2 : Fuegomon: incrementa un 20% en el critico por 3 turnos
                         Turno1 = 3;
                     }
                 }
@@ -272,43 +277,154 @@ namespace Roquemon
                 {
                     if (Jugador == true)
                     {
-                        Defensa1 = Plantamon.Defensa + 5;
+                        Defensa1 = Plantamon.Defensa + 5; // Jugador1 : Plantamon: incrementa un bono de 5 en Defensa por 3 turnos
                         Turno3 = 3;
                     }
                     else if (Jugador == false)
                     {
-                        Defensa2 = Plantamon.Defensa + 5;
+                        Defensa2 = Plantamon.Defensa + 5; // Jugador1 : Plantamon: incrementa un bono de 5 en Defensa por 3 turnos
                         Turno4 = 3;
                     }
                 }
             }
         }
-        //int Vida1, int Ataque1, int Defensa1, int Velocidad1, double Critico1, int Vida2, int Ataque2, int Defensa2, int Velocidad2, double Critico2
+
         private void Resultados()
         {
             Random Aleatorio = new Random();
             VelocidadEfectiva1 = Velocidad1 + Aleatorio.Next(-10, 10);
             VelocidadEfectiva2 = Velocidad2 + Aleatorio.Next(-10, 10);
-            Daño1 = (Ataque1 + Aleatorio.Next(-7, 7) - Defensa2) * (Critico1+1);
-            if (Daño1 < 0) Daño1 = 0;
-            Daño2 = (Ataque2 + Aleatorio.Next(-7, 7) - Defensa1) * (Critico2+1);
-            if (Daño2 < 0) Daño2 = 0;
+            Daño1 = (Ataque1 + Aleatorio.Next(-7, 7) - Defensa2) * (Critico1 + 1);
+            if (Daño1 < 0) Daño1 = 0; //Valida que el daño sera nulo, en el caso que la defensa sea mayor al daño 
+            Daño2 = (Ataque2 + Aleatorio.Next(-7, 7) - Defensa1) * (Critico2 + 1);
+            if (Daño2 < 0) Daño2 = 0; //Valida que el daño sera nulo, en el caso que la defensa sea mayor al daño 
 
         }
+        private void PrimeroAtacar()
+        {
+            //Compara las velocidades para determinar quien ataca primero, si el que recibe el daño queda con vida positiva luego del ataque
+            //disminuye el progressbar en base a la vida restante y envia el mensaje descriptivo
+            string Habilidad = "";
+            if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar2.Value > Convert.ToInt32(Daño1))
+            {
+                progressBar2.Value = progressBar2.Value - Convert.ToInt32(Daño1);
+                label3.Text = Convert.ToString(progressBar2.Value);
+                if (Habilidad1.Checked == true) Habilidad = Habilidad1.Text;
+                else if (Habilidad2.Checked == true) Habilidad = Habilidad2.Text;
+                label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + "de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad;
+            }
+            else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
+            {
+                progressBar1.Value = progressBar1.Value - Convert.ToInt32(Daño2);
+                label2.Text = Convert.ToString(progressBar1.Value);
+                if (Habilidad3.Checked == true) Habilidad = Habilidad3.Text;
+                else if (Habilidad4.Checked == true) Habilidad = Habilidad4.Text;
+                label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad;
+            }//En el casi que el que recibe el daño se le acabe la vida luego de ser atacado, establece al ganador
+            // coloca el progressbar del perdedor en 0 y envia el mensaje descriptivo
+            else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar2.Value <= Convert.ToInt32(Daño1))
+            {
+                progressBar2.Value = 0;
+                label3.Text = "0";
+                if (Habilidad1.Checked == true) Habilidad = Habilidad1.Text;
+                if (Habilidad2.Checked == true) Habilidad = Habilidad2.Text;
+                label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad;
+                Ganador = Jugador1.Text + " con " + Roquemon1.Text;
+            }
+            else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar1.Value <= Convert.ToInt32(Daño2))
+            {
+                progressBar1.Value = 0;
+                label2.Text = "0";
+                if (Habilidad3.Checked == true) Habilidad = Habilidad3.Text;
+                if (Habilidad4.Checked == true) Habilidad = Habilidad4.Text;
+                label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad;
+                Ganador = Jugador2.Text + " con " + Roquemon2.Text;
 
+            }
+        }
 
+        private void SegundoAtacar()
+        {    //Se Compara las velocidades para determinar quien atacara de segundo, si el que recibe el daño queda con vida positiva luego del ataque
+            //disminuye el progressbar en base a la vida restante y envia el mensaje descriptivo
+            if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar2.Value > Convert.ToInt32(Daño1))
+            {
+                progressBar2.Value = progressBar2.Value - Convert.ToInt32(Daño1);
+                label3.Text = Convert.ToString(progressBar2.Value);
+                if (Habilidad1.Checked == true)
+                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + "de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad1.Text;
+                else if (Habilidad2.Checked == true)
+                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad2.Text;
+            }
+            else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
+            {
+                progressBar1.Value = progressBar1.Value - Convert.ToInt32(Daño2);
+                label2.Text = Convert.ToString(progressBar1.Value);
+                if (Habilidad3.Checked == true)
+                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad3.Text;
+                else if (Habilidad4.Checked == true)
+                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad4.Text;
+            }//En el casi que el que recibe el daño se le acabe la vida luego de ser atacado, establece al ganador
+            // coloca el progressbar del perdedor en 0 y envia el mensaje descriptivo
+            else if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar2.Value <= Convert.ToInt32(Daño1))
+            {
+                progressBar2.Value = 0;
+                label3.Text = "0";
+                if (Habilidad1.Checked == true)
+                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad1.Text;
+                if (Habilidad2.Checked == true)
+                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño1) + "\n al " + Roquemon2.Text + " de " + Jugador2.Text +
+                                   " usando la habilidad: " + Habilidad2.Text;
+                Ganador = Jugador1.Text + " con " + Roquemon1.Text;
+
+            }
+            else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar1.Value <= Convert.ToInt32(Daño2))
+            {
+                progressBar1.Value = 0;
+                label2.Text = "0";
+                if (Habilidad3.Checked == true)
+                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad3.Text;
+                if (Habilidad4.Checked == true)
+                    label1.Text = "El " + Roquemon2.Text + " de " + Jugador2.Text + " ha causado un daño de: " +
+                                   Convert.ToString(Daño2) + "\n al " + Roquemon1.Text + " de " + Jugador1.Text +
+                                   " usando la habilidad: " + Habilidad4.Text;
+                Ganador = Jugador2.Text + " con " + Roquemon2.Text;
+
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
+            // habilita el boton combatir cuando ambos jugadores hayan elegido los roquemones
             Habilitador++;
             if (Habilitador == 2)
             {
                 Combatir.Visible = true;
                 Combatir.Enabled = false;
                 Habilitador = 0;
-            } 
-        
-           if (AguamonI.Checked == true)
-           {
+            }
+            //Carga la interfaz correspondiente con el roquemon seleccionado para el jugador
+            if (AguamonI.Checked == true)
+            {
                 Roquemon1.Text = Aguamon.Nombre;
                 Habilidad1.Image = Image.FromFile("AtaqueRapido.ico");
                 Habilidad1.Text = "Ataque Rápido";
@@ -319,9 +435,6 @@ namespace Roquemon
                 pictureBox1.Image = Image.FromFile("AguamonIzquierda.png");
                 progressBar1.Maximum = Aguamon.Vida;
                 progressBar1.Value = Aguamon.Vida;
-                
-
-
             }
             else if (FuegomonI.Checked == true)
             {
@@ -336,7 +449,7 @@ namespace Roquemon
                 progressBar1.Maximum = Fuegomon.Vida;
                 progressBar1.Value = Fuegomon.Vida;
             }
-           else if (PlantamonI.Checked == true)
+            else if (PlantamonI.Checked == true)
             {
                 Roquemon1.Text = Plantamon.Nombre;
                 Habilidad1.Image = Image.FromFile("Latigo.ico");
@@ -356,6 +469,7 @@ namespace Roquemon
 
         private void Bjugador2_Click(object sender, EventArgs e)
         {
+            // habilita el boton combatir cuando ambos jugadores hayan elegido los roquemones
             Habilitador++;
             if (Habilitador == 2)
             {
@@ -363,7 +477,7 @@ namespace Roquemon
                 Combatir.Enabled = false;
                 Habilitador = 0;
             }
-            
+            //Carga la interfaz correspondiente con el roquemon seleccionado para el jugador
             if (AguamonD.Checked == true)
             {
                 Roquemon2.Text = "Aguamón";
@@ -450,45 +564,52 @@ namespace Roquemon
             }
         }
 
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (VelocidadEfectiva1 < VelocidadEfectiva2 && progressBar2.Value > Convert.ToInt32(Daño1))
-            {
-                progressBar2.Value = progressBar2.Value - Convert.ToInt32(Daño1);
-                label3.Text = Convert.ToString(progressBar2.Value);
-                if (Habilidad1.Checked == true)
-                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + " al " + Roquemon2.Text + "de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad1.Text;
-                else if (Habilidad2.Checked == true)
-                    label1.Text = "El " + Roquemon1.Text + " de " + Jugador1.Text + " ha causado un daño de: " +
-                                   Convert.ToString(Daño1) + " al " + Roquemon2.Text + "de " + Jugador2.Text +
-                                   " usando la habilidad: " + Habilidad2.Text;
-            }
-            else if (VelocidadEfectiva1 > VelocidadEfectiva2 && progressBar1.Value > Convert.ToInt32(Daño2))
-            {
-                progressBar1.Value = progressBar1.Value - Convert.ToInt32(Daño2);
-                label3.Text = Convert.ToString(progressBar1.Value);
-                if (Habilidad3.Checked == true)
-                    label1.Text = "El " + Roquemon2.Text + "de " + Jugador2.Text + "ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + " al " + Roquemon1.Text + "de " + Jugador1.Text +
-                                   "usando la habilidad: " + Habilidad3.Text;
-                else if (Habilidad4.Checked == true)
-                    label1.Text = "El " + Roquemon2.Text + "de " + Jugador2.Text + "ha causado un daño de: " +
-                                   Convert.ToString(Daño2) + " al " + Roquemon1.Text + "de " + Jugador1.Text +
-                                   "usando la habilidad: " + Habilidad4.Text;
-            }
+            SegundoAtacar();
+            timer1.Stop();
+
             Combatir.Enabled = false;
             Habilidad1.Checked = false;
             Habilidad2.Checked = false;
             Habilidad3.Checked = false;
             Habilidad4.Checked = false;
-            timer1.Stop();
+            if (progressBar1.Value == 0 || progressBar2.Value == 0)
+            {
+                SeleccionarGanador();
+            }
+        }
+        private void SeleccionarGanador()
+        {
+            Thread.Sleep(1500);
+            DialogResult Reiniciar;
+
+            Reiniciar = MessageBox.Show("HAS GANADO \n" + Ganador + "\n ¿Quieren Jugar de nuevo?", "GANADOR", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if (Reiniciar == System.Windows.Forms.DialogResult.Yes)
+            {
+                groupBox5.Visible = true;
+                groupBox6.Visible = true;
+                Combatir.Visible = false;
+                label1.Text = "";
+                AguamonD.Checked = false;
+                FuegomonD.Checked = false;
+                PlantamonD.Checked = false;
+                AguamonI.Checked = false;
+                FuegomonI.Checked = false;
+                PlantamonI.Checked = false;
+                inicializacion();
+                Ganador = "";
+                string Jugador1 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 1", "");
+                if (Jugador1 == "") this.Jugador1.Text = "Jugador1";
+                else this.Jugador1.Text = Jugador1;
+                string Jugador2 = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el nombre del Jugador", "Jugador 2", "");
+                if (Jugador2 == "") this.Jugador2.Text = "Jugador2";
+                else this.Jugador2.Text = Jugador2;
+            }
+            else Close();
+        }
+        private void progressBar2_Click(object sender, EventArgs e)
+        {
 
         }
 
